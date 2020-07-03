@@ -24,13 +24,13 @@ public class ReviewController {
 	
 	@ResponseBody
 	@GetMapping(value="/search", produces="application/String; charset=utf-8")
-	public String search(String keyword, boolean viewMore, int display) {
+	public String search(String keyword, boolean viewMore, int nextStart) {
 		
 		System.out.println("viewMore ?????? : " + viewMore);
 		
-		System.out.println(display);
+		System.out.println(nextStart);
 		// json값으로 넘어옴
-		String result = MovieAPI.searchMovie(keyword, display);
+		String result = MovieAPI.searchMovie(keyword, nextStart);
 		
 		return result;
 	}

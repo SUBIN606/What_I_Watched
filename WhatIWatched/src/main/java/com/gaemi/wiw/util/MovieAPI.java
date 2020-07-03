@@ -25,7 +25,7 @@ public class MovieAPI {
 		return prop;
 	}
 	
-	public static String searchMovie(String keyword, int display) {
+	public static String searchMovie(String keyword, int nextStart) {
 		
 		// API KEY 받기
 		Properties prop = getAPIKey();
@@ -42,8 +42,9 @@ public class MovieAPI {
         }
         
         // API요청 주소
-        String apiURL = "https://openapi.naver.com/v1/search/movie.json?query=" + text + "&display=" + display;
- 
+        String apiURL = "https://openapi.naver.com/v1/search/movie.json?query=" + text ;
+        if(nextStart!=0)apiURL+=("&start=" + nextStart);
+        System.out.println(apiURL);
         Map<String, String> requestHeaders = new HashMap<>();
         
         // header에 API KEY 등록
