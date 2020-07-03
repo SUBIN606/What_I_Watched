@@ -7,4 +7,8 @@
 		INSERT INTO USERS(ID, PASSWORD, NAME, ENABLED) 
 		VALUES( #{id} , #{password} , #{name} , 1 )
 	</insert>
+	
+	<select id="getUserById" parameterType="String" resultType="com.gaemi.wiw.security.CustomUserDetails">
+		SELECT * FROM USERS WHERE ID=#{id}
+	</select>
 </mapper>

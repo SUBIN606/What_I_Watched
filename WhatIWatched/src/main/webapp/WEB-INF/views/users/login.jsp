@@ -10,7 +10,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+	<!-- Nav Bar -->
+	<jsp:include page="../common/NavBar.jsp" flush="false" />
+	
 	<h1>로그인 페이지 ㅎㅎ</h1>
 	<h1>Login Page</h1> 
 	<h2>${error}</h2> 
@@ -21,6 +23,7 @@
 		<div> <input type="submit"/> </div> 
 		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" /> 
 	</form>
+	<a href="${pageContext.request.contextPath}/users/register">회원가입</a>
 	<c:if test="${not empty SPRING_SECURITY_LAST_EXCEPTION}">
 	    <font color="red">
 	        Your login attempt was not successful due to <br/>

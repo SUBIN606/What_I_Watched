@@ -8,6 +8,7 @@ tmp/
 *~.nib
 local.properties
 jdbc.properties
+api.properties
 .settings/
 .loadpath
 .recommenders

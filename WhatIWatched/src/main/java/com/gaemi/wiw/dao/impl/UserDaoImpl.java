@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import com.gaemi.wiw.dao.UserDao;
 import com.gaemi.wiw.dto.UserDto;
+import com.gaemi.wiw.security.CustomUserDetails;
 
 @Repository
 public class UserDaoImpl implements UserDao {
@@ -19,6 +20,12 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public void RegisterUser(UserDto userInfo) {		
 		sqlSession.insert(namespace + "register" , userInfo);
+	}
+
+	@Override
+	public CustomUserDetails getUserById(String id) {
+		CustomUserDetails users = sqlSession.selectOne(namespace + "getUserById", id);
+		return users;
 	}
 
 }

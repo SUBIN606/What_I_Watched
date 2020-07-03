@@ -1,0 +1,40 @@
+@charset "UTF-8";
+.navbar{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 15px 20px;
+}
+.navbar__logo{
+	font-family: 'Chewy', cursive;
+	font-size: 21pt;
+}
+.navbar__logo__text{
+	color: var(--accent-color);
+}
+.navbar__logo__img{
+	width: 30px;
+    vertical-align: text-top;
+}
+
+.navbar__users {
+	font-family: 'Roboto', 'Noto Sans KR', sans-serif;
+	display: flex;
+}
+.navbar__users li {
+	list-style: none;
+	padding: 7px;
+}
+.navbar__userBtn{
+	font-family: 'Roboto', 'Noto Sans KR', sans-serif;
+    font-size: 17px;
+    background-color: var(--accent-color);
+    color: #fff;
+    padding: 7px 12px;
+    border-radius: 1em;
+    border: none;
+    cursor: pointer;
+}
+.navbar__users form {
+	display: inline;
+}

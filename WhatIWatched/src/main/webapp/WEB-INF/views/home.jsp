@@ -1,16 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+
 <html>
 <head>
 	<title>Home</title>
 </head>
 <body>
-	<h1>What I Watched</h1>
-	<P>  The time on the server is ${serverTime}. </P>
+	<!-- Nav Bar -->
+	<jsp:include page="common/NavBar.jsp" flush="false" />
 	
-	<a href="${pageContext.request.contextPath}/users/register">회원가입</a> <br><br>
+	<h1>Welcome Home</h1>
+	<a href="${pageContext.request.contextPath }/reviews/write">글쓰기</a>
 	
-	<a href="${pageContext.request.contextPath}/users/login">로그인</a>
 </body>
 </html>

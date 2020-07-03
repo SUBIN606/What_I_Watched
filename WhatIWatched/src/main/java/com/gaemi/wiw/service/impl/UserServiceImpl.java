@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.gaemi.wiw.dao.UserDao;
 import com.gaemi.wiw.dto.UserDto;
+import com.gaemi.wiw.security.CustomUserDetails;
 import com.gaemi.wiw.service.UserService;
 
 @Service

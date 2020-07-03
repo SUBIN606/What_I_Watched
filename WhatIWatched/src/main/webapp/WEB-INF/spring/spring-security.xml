@@ -2,21 +2,33 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:security="http://www.springframework.org/schema/security"
+	xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
-		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 	
-	
+	<context:component-scan base-package="com.gaemi.wiw" />
+	<bean id="customUserService" class="com.gaemi.wiw.security.CustomUserDetailsService" />
 	<bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
-
-	<security:http>
+	
+	<security:http pattern="/**/*.js" security="none"/>
+    <security:http pattern="/**/*.css" security="none"/>
+    <security:http pattern="/image/*" security="none"/>
+    
+	<security:http>	
 		<security:intercept-url pattern="/" access="permitAll"/>
-		<security:intercept-url pattern="/users/member" access="hasRole('ROLE_MEMBER')"/>
+		<security:intercept-url pattern="/users/member" access="hasRole('ROLE_USER')"/>
 		<security:intercept-url pattern="/users/admin" access="hasRole('ROLE_ADMIN')"/>
+		<security:intercept-url pattern="/reviews/**" access="hasAnyRole('ROLE_USER, ROLE_ADMIN')"/>
+		
 		<security:form-login login-page="/users/login"
 							 username-parameter="id"
 							 login-processing-url="/users/login-processing"
 							 default-target-url="/" />
 		
+		<security:logout invalidate-session="true"
+						 logout-url="/users/logout" 
+						 logout-success-url="/"/>
 		
 		<!-- 최대 한 개의 세션만 생성되도록 -->
 		<security:session-management invalid-session-url="/users/login">
@@ -27,19 +39,25 @@
 	</security:http>
 	
 	<security:authentication-manager>	
-		<security:authentication-provider>			
+		<security:authentication-provider user-service-ref="customUserService">
+			<security:password-encoder hash="bcrypt"/>
 			<!--  
 			<security:user-service>		
 				<security:user name="aaa" password="{noop}aaa" authorities="ROLE_MEMBER"/>
 				<security:user name="admin" password="{noop}admin" authorities="ROLE_MEMBER, ROLE_ADMIN"/> 
 			</security:user-service>
-			-->	
-			<security:password-encoder hash="bcrypt"/>
+			-->
+
+			
+			<!-- 
 			<security:jdbc-user-service data-source-ref="dataSource"
 				users-by-username-query="SELECT ID, PASSWORD, ENABLED FROM USERS WHERE ID=?"
 				authorities-by-username-query="SELECT ID, PASSWORD, AUTH as authority FROM USERS WHERE ID=?"
-			/>			
+			/>
+			 -->
+			
 		</security:authentication-provider>
+		
 	</security:authentication-manager>
 
 </beans>

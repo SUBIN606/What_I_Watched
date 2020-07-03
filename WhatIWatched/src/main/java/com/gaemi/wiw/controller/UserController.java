@@ -34,11 +34,6 @@ public class UserController {
 		}
 	}
 	
-	@PostMapping("/login-processing")
-	public void loginProcessing(String error) {
-		logger.info("login-processing!");
-		logger.info("err :" + error );
-	}
 	
 	@GetMapping("/register")
 	public String registerPage() {
