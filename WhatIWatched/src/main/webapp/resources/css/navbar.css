@@ -5,11 +5,11 @@
 	align-items: center;
 	padding: 15px 20px;
 }
-.navbar__logo{
-	font-family: 'Chewy', cursive;
+.navbar__logo{	
 	font-size: 21pt;
 }
 .navbar__logo__text{
+	font-family: 'Chewy', cursive;
 	color: var(--accent-color);
 }
 .navbar__logo__img{
@@ -18,7 +18,6 @@
 }
 
 .navbar__users {
-	font-family: 'Roboto', 'Noto Sans KR', sans-serif;
 	display: flex;
 }
 .navbar__users li {
@@ -26,7 +25,6 @@
 	padding: 7px;
 }
 .navbar__userBtn{
-	font-family: 'Roboto', 'Noto Sans KR', sans-serif;
     font-size: 17px;
     background-color: var(--accent-color);
     color: #fff;

@@ -1,12 +1,7 @@
-const client_id = 'QfR_teL8wzzDbCeWabjG';
-const client_secret = 'ByMZaZGfmS';
-
-const writeForm = document.querySelector(".writeForm");
-const inputContentTitle = writeForm.querySelector(".input__search");
-const searchBtn = writeForm.querySelector(".searchBtn");
-const inputFile = writeForm.querySelector(".input__file");
-
-const contentsContainer = writeForm.querySelector(".contents__container");
+const searchWrap = document.querySelector(".searchWrap");
+const searchBtn = searchWrap.querySelector(".searchBtn");
+const inputSearch = searchWrap.querySelector(".input__search");
+const contentsContainer = searchWrap.querySelector(".contents__container");
 const contentsList = contentsContainer.querySelector(".contents__list");
 const viewMoreBtn = contentsContainer.querySelector(".contents__more__btn");
 
@@ -26,20 +21,46 @@ function getDisplay(){
 function clickSearchBtn() {
 	
 	// 다시 검색하는 경우를 위해 빈 배열로 초기화
-	movieList = [];
+	movieList= [];
 	
 	// 만약 다시검색했을 경우 화면에 출력되어있는 li태그들 모두 삭제
 	if(contentsList.hasChildNodes()){
 		deleteContents();
 	}
-	const keyword = inputContentTitle.value;
-	searchContent(keyword, false, 0);
+	
+	const keyword = inputSearch.value;
+	if(keyword === "") {
+		searchAlert("검색어를 입력하세요!");
+	}else if(keyword.length < 2) {
+		searchAlert("검색어는 두 글자 이상 입력해주세요!");
+	}else{
+		removeAlert();
+		searchContent(keyword, false, 0);
+	}
+	
+}
+
+// 검색관련 알림
+function searchAlert(msg) {
+	removeAlert();
+	const alert = document.createElement("p");
+	alert.classList.add("alert");
+	alert.innerHTML = msg;
+	searchWrap.appendChild(alert);
+}
+
+// 알림 삭제
+function removeAlert(){
+	if(searchWrap.querySelector(".alert")){
+		const oldAlert = searchWrap.querySelector(".alert");
+		searchWrap.removeChild(oldAlert);
+	}
 }
 
 // 검색 값 더 불러오기
 function clickMoreBtn() {
 	console.log(display);
-	const keyword = inputContentTitle.value;
+	const keyword = inputSearch.value;
 	const nextStart = getDisplay() + 1;
 	console.log(nextStart);
 	searchContent(keyword, true, nextStart);
@@ -79,6 +100,11 @@ function searchContent(keyword, viewMore, nextStart) {
 function paintContents(data) {
 	
 	contentsContainer.classList.remove("hide");
+	if(data.length === 0){
+		const p = document.createElement("p");
+		p.innerHTML = "검색결과가 없습니다😓";
+		contentsList.appendChild(p);
+	}
 	
 	data.forEach((content, index) => {
 		const li = document.createElement("li");
@@ -91,7 +117,7 @@ function paintContents(data) {
 		
 		const chooseBtn = document.createElement("button");
 		chooseBtn.innerHTML = "선택";
-		chooseBtn.addEventListener("click", clickContent);
+		chooseBtn.addEventListener("click", clickChooseBtn);
 		
 		const posterImg = new Image();
 		
@@ -124,8 +150,12 @@ function deleteContents(){
 }
 
 // 컨텐츠 선택
-function clickContent(e) {
+function clickChooseBtn(e) {
 	e.preventDefault();
+	
+	const img = document.querySelector(".posterImg");
+	const inputTitle = document.querySelector(".input__title");
+	
 	if(e.target.parentNode.tagName === "LI"){
 		const li = e.target.parentNode.parentNode;
 		const title = li.querySelector("span").innerHTML;
@@ -134,9 +164,14 @@ function clickContent(e) {
 		const content = movieList.find(movie => {
 			return movie.title === title;
 		})
-
-		convertFureString(content.title);
+		console.log(content);
+		img.src = content.image;
+		inputTitle.value = convertFureString(content.title);
 	}
+	
+	inputSearch.value = "";
+	movieList = [];
+	contentsContainer.classList.add("hide");
 }
 
 // title에서 <b></b>태그 제거
@@ -148,21 +183,9 @@ function convertFureString(text) {
 	return convert;
 }
 
-// 포스터 업로드
-function handleInputFile(e) {
-	const imgPreview = document.querySelector(".writeForm__img__preview");
-	const reader = new FileReader();
-    const file = event.target.files[0];
-    reader.onloadend = () => {
-    	imgPreview.src = reader.result;
-    }
-    reader.readAsDataURL(file);
-}
-
 function init() {
-	console.log("write.js")
+	console.log("searchContents.js")
 	searchBtn.addEventListener("click", clickSearchBtn);
-	inputFile.addEventListener("change", handleInputFile);
 	viewMoreBtn.addEventListener("click", clickMoreBtn);
 }
 
