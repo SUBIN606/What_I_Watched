@@ -7,30 +7,30 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>WIW | Login</title>
+<link rel="stylesheet" href="../resources/css/login.css"/>
 </head>
 <body>
 	<!-- Nav Bar -->
 	<jsp:include page="../common/NavBar.jsp" flush="false" />
 	
-	<h1>로그인 페이지 ㅎㅎ</h1>
-	<h1>Login Page</h1> 
-	<h2>${error}</h2> 
-	<h2>${logout}</h2> 
-	<form action="${pageContext.request.contextPath}/users/login-processing" method="post"> 
-		<div> <input type="text" name="id" /> </div> 
-		<div> <input type="password" name="password" /> </div> 
-		<div> <input type="submit"/> </div> 
-		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" /> 
-	</form>
-	<a href="${pageContext.request.contextPath}/users/register">회원가입</a>
-	<c:if test="${not empty SPRING_SECURITY_LAST_EXCEPTION}">
-	    <font color="red">
-	        Your login attempt was not successful due to <br/>
-	        ${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}
-	        <c:remove var="SPRING_SECURITY_LAST_EXCEPTION" scope="session"/>
-	    </font>
-	</c:if>
-
+	<div class="loginWrap">
+		<img src="../resources/image/popcorn.png" class="login__logo">
+		<form action="${pageContext.request.contextPath}/users/login-processing" method="post"> 
+			<input type="text" name="id" placeholder="ID"/> 
+			<input type="password" name="password" placeholder="PASSWORD"/> 
+			<input type="submit" class="btn" value="LOGIN"/> 
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" /> 
+		</form>
+		<span>아직 회원이 아니신가요? <a href="${pageContext.request.contextPath}/users/register">회원가입</a></span>
+		<c:if test="${not empty SPRING_SECURITY_LAST_EXCEPTION}">
+		    <font color="red">
+		        Your login attempt was not successful due to <br/>
+		        ${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}
+		        <c:remove var="SPRING_SECURITY_LAST_EXCEPTION" scope="session"/>
+		    </font>
+		</c:if>
+	</div>
+	
 </body>
 </html>

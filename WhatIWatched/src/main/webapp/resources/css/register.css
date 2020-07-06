@@ -1,0 +1,42 @@
+@charset "UTF-8";
+.registerWrap {
+	width: min-content;
+	max-width: 320px;
+    max-height: 500px;
+    text-align: center;
+    margin: 100px auto;
+}
+.registerWrap p {
+	font-size: 25px;
+	font-weight: 600;
+}
+.registerWrap span { 
+	color: var(--light-color);
+	font-size: 12px;
+	font-weight: 500;
+	display: block;
+	float: left;
+	padding: 5px;
+}
+
+.registerWrap input {
+	diplay: block;
+	border: none;
+	border-bottom: 1px solid gray;
+	width: 320px;
+	height: 40px;
+	font-size: 15px;
+	padding: 5px 12px;
+	margin-bottom: 20px;
+	outline: none;
+}
+
+.registerWrap input:focus {
+	border-bottom: 1px solid var(--accent-color);
+}
+
+.loginWrap input[type="submit"]{
+	width: 325px;
+	border: none;
+	font-size: 17px;
+}

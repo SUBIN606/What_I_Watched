@@ -1,0 +1,36 @@
+@charset "UTF-8";
+.loginWrap {
+	width: 500px;
+	min-width: 400px;
+	margin: 150px auto;
+	text-align: center;
+}
+.loginWrap input {
+	border: none;
+	border-bottom: 1px solid gray;
+	width: 300px;
+	height: 40px;
+	font-size: 15px;
+	padding: 5px 12px;
+	margin-bottom: 7px;
+	outline: none;
+}
+.loginWrap input:focus {
+	border-bottom: 1px solid var(--accent-color);
+}
+.loginWrap input[type="submit"]{
+	width: 310px;
+	border: none;
+	font-size: 17px;
+}
+.loginWrap span {
+	font-size: 14px;
+}
+.loginWrap span a {
+	color: var(--accent-color);
+	font-weight: 600;
+}
+.login__logo {
+	width: 40px;
+	margin-bottom: 10px;
+}
