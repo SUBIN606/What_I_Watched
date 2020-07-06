@@ -28,3 +28,14 @@ p {
 .alert{
   color: #e74c3c;
 }
+
+.btn {
+	font-size: 17px;
+    background-color: var(--accent-color);
+    color: #fff;
+    padding: 7px 12px;
+    border-radius: 20em;
+    border: none;
+    cursor: pointer;
+    outline: none;
+}

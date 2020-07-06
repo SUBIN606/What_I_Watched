@@ -3,7 +3,9 @@ const searchBtn = searchWrap.querySelector(".searchBtn");
 const inputSearch = searchWrap.querySelector(".input__search");
 const contentsContainer = searchWrap.querySelector(".contents__container");
 const contentsList = contentsContainer.querySelector(".contents__list");
-const viewMoreBtn = contentsContainer.querySelector(".contents__more__btn");
+const viewMoreBtn = contentsContainer.querySelector(".viewMoreBtn");
+
+const writeArea = document.querySelector(".writeFormWrap");
 
 // api에서 받아올 데이터값을 담을 변수
 let movieList = [];
@@ -22,13 +24,15 @@ function clickSearchBtn() {
 	
 	// 다시 검색하는 경우를 위해 빈 배열로 초기화
 	movieList= [];
+	// 리뷰 작성 form 숨기기
+	writeArea.classList.add("hide");
 	
 	// 만약 다시검색했을 경우 화면에 출력되어있는 li태그들 모두 삭제
 	if(contentsList.hasChildNodes()){
 		deleteContents();
 	}
 	
-	const keyword = inputSearch.value;
+	const keyword = inputSearch.value.trim();
 	if(keyword === "") {
 		searchAlert("검색어를 입력하세요!");
 	}else if(keyword.length < 2) {
@@ -59,13 +63,13 @@ function removeAlert(){
 
 // 검색 값 더 불러오기
 function clickMoreBtn() {
-	console.log(display);
+	
 	const keyword = inputSearch.value;
 	const nextStart = getDisplay() + 1;
-	console.log(nextStart);
+
 	searchContent(keyword, true, nextStart);
 	setDisplay();
-	console.log(display);
+
 }
 
 
@@ -79,7 +83,7 @@ function searchContent(keyword, viewMore, nextStart) {
 	.then(response => response.json())
 	.then(data => {
 		const nextStart = getDisplay() + 1;
-		console.log("total : ", data.total , " / nextStart : " , nextStart);
+
 		if(data.total >= nextStart){
 			viewMoreBtn.classList.remove("hide");
 		}else{
@@ -152,21 +156,26 @@ function deleteContents(){
 // 컨텐츠 선택
 function clickChooseBtn(e) {
 	e.preventDefault();
+	console.log(e.target.parentNode.tagName);
+	// 리뷰 작성 form 보이게
+	writeArea.classList.remove("hide");
 	
 	const img = document.querySelector(".posterImg");
 	const inputTitle = document.querySelector(".input__title");
+	const inputSubTitle = document.querySelector(".input__subtitle");
 	
 	if(e.target.parentNode.tagName === "LI"){
-		const li = e.target.parentNode.parentNode;
+		const li = e.target.parentNode;
 		const title = li.querySelector("span").innerHTML;
-		
+
 		// 선택한 컨텐츠 객체를 movieList배열에서 찾기
 		const content = movieList.find(movie => {
 			return movie.title === title;
 		})
-		console.log(content);
+		console.log("클릭한 컨텐츠 : ", content);
 		img.src = content.image;
 		inputTitle.value = convertFureString(content.title);
+		inputSubTitle.value = content.subtitle;
 	}
 	
 	inputSearch.value = "";

@@ -3,12 +3,13 @@ const inputFile = writeForm.querySelector(".input__file");
 const posterImg = writeForm.querySelector(".posterImg");
 const inputTitle = writeForm.querySelector(".input__title");
 const inputRating = writeForm.querySelector(".input__rating");
+const inputComment = writeForm.querySelector(".input__comment");
 
 
 // rating
 function handleRange(e) {
-	const span = writeForm.querySelector(".raitng__span");
-	span.innerHTML = `${e.target.value}점`;
+	const span = writeForm.querySelector(".rating__span");
+	span.innerHTML = `${e.target.value}`;
 }
 
 //포스터 업로드
@@ -23,7 +24,7 @@ function handleInputFile(e) {
 
 function init() {
 	console.log("review.js")
-	inputRating.addEventListener("change", handleRange);
+	inputRating.addEventListener("input", handleRange);
 	inputFile.addEventListener("change", handleInputFile);
 }
 

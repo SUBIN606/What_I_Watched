@@ -29,7 +29,7 @@
 	<div class="navbar__users">
 		<sec:authorize access="!isAuthenticated()">
 	  		<li>
-	  			<button type="button" class="navbar__userBtn" 
+	  			<button type="button" class="login btn" 
 	  					onclick="location.href='${pageContext.request.contextPath}/users/login'">
 	  			LOGIN
 	  			</button>
@@ -41,7 +41,7 @@
 			<li>
 				<form action="${pageContext.request.contextPath }/users/logout" method="post">
 					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-					<input type="submit" class="navbar__userBtn" value="LOGOUT" />
+					<input type="submit" class="logout btn" value="LOGOUT" />
 				</form>
 			</li>
 		</sec:authorize>

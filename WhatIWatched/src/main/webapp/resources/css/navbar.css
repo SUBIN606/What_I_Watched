@@ -19,20 +19,18 @@
 
 .navbar__users {
 	display: flex;
+	align-items: center;
 }
+
 .navbar__users li {
 	list-style: none;
 	padding: 7px;
 }
-.navbar__userBtn{
-    font-size: 17px;
-    background-color: var(--accent-color);
-    color: #fff;
-    padding: 7px 12px;
-    border-radius: 1em;
-    border: none;
-    cursor: pointer;
-}
+
 .navbar__users form {
 	display: inline;
+}
+
+.logout {
+	background-color: #aaa69d;
 }

@@ -3,11 +3,35 @@
 
 /*	검색 영역	*/
 .searchWrap {
-	margin-bottom: 50px;
+	min-width: 450px;
+    max-width: 800px;
+    margin: auto;
+    text-align: center;
+}
+
+.searchWrap input[type="text"] {
+	width: 320px;
+	padding: 5px 8px;
+	font-size: 16px;
+	border: none;
+	border-bottom: 1px solid gray;
+}
+
+.searchBtn {
+	font-size: 15px;
+    font-weight: 800;
+    background-color: #ececec;
+    color: #218c74;
+    padding: 4px 12px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    outline: none;
 }
 
 /*	검색결과	*/
 .contents__container {
+	margin-top: 20px;
 	max-height: 400px;
 	overflow: hidden;
     overflow-y: auto;
@@ -78,19 +102,47 @@
 	color: #acacac;
 }
 
+/*	더보기 버튼      */
+.viewMoreBtn {
+	font-size: 15px;
+    background-color: #ececec;
+    color: #218c74;
+    padding: 7px 18px;
+    border-radius: 20em;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    margin: 15px auto;
+}
+
 
 /*	글쓰기 폼	*/
+.writeFormWrap {
+	min-width: 450px;
+	max-width: 800px;
+	margin: auto;
+	margin-top: 50px;
+}
 .writeForm input {
-	
-	
-	
-	
+	margin: 5px 0 15px 0;
 }
 .writeForm input[type="text"] {
 	padding: 5px 8px;
-	font-size: 15px;
+	font-size: 18px;
 	border: none;
 	border-bottom: 1px solid gray;
+}
+.writeForm input[type="range"] {
+
+}
+.writeForm p {
+	font-size: 12px;
+	color: gray;
+}
+.rating__span{
+	color: var(--accent-color);
+	font-weight: 600;
+	font-size: 17px;
 }
 .writeForm__row {
 	display: flex;
@@ -140,7 +192,14 @@
 
 .writeForm textarea {
 	resize: none;
-	width: 100%;
+    width: 90%;
+    padding: 12px;
+    border: none;
+    outline-color: var(--accent-color);
+}
+
+.save {
+	width: 120px;
 }
 
 /*	포스터 이미지	*/

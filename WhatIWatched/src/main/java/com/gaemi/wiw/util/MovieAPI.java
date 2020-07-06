@@ -44,7 +44,7 @@ public class MovieAPI {
         // API요청 주소
         String apiURL = "https://openapi.naver.com/v1/search/movie.json?query=" + text ;
         if(nextStart!=0)apiURL+=("&start=" + nextStart);
-        System.out.println(apiURL);
+       // System.out.println(apiURL);
         Map<String, String> requestHeaders = new HashMap<>();
         
         // header에 API KEY 등록
@@ -54,7 +54,7 @@ public class MovieAPI {
         // 출력 결과(JSON)
         String responseBody = get(apiURL,requestHeaders);
 
-        System.out.println(responseBody);
+       // System.out.println(responseBody);
         
         return responseBody;
     }
