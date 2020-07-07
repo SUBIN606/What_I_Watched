@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -41,7 +42,7 @@ public class ReviewController {
 	}
 	
 	@PostMapping("/write-processing")
-	public String writePrecessing(ReviewDto reviewDto, MultipartHttpServletRequest mtf, HttpServletRequest req) throws Exception{
+	public String writePrecessing(ReviewDto reviewDto, @RequestParam("file") MultipartFile file) throws Exception{
 		System.out.println(reviewDto);
 		// 파일 태그 name
 		String fileTag = "file";
@@ -49,7 +50,7 @@ public class ReviewController {
 	    // 업로드 파일이 저장될 경로
 		
 		// 파일 이름	
-		MultipartFile file = mtf.getFile(fileTag);
+		//MultipartFile file = mtf.getFile(fileTag);
 		if(file.isEmpty()) {
 			System.out.println("파일이 없잖니;;");
 		}else {

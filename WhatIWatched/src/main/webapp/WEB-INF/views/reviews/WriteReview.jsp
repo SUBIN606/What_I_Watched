@@ -16,7 +16,7 @@
 	<div class="searchWrap">
 		<input type="text" class="input__search" name="content_title" placeholder="컨텐츠 제목을 입력하세요." />
 		<button type="button" class="searchBtn">검색</button>	
-			
+		
 		<div class="contents__container hide">
 			<ul class="contents__list"></ul>
 			<button type="button" class="viewMoreBtn hide">VIEW MORE</button>

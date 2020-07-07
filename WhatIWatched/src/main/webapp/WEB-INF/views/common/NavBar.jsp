@@ -37,6 +37,12 @@
 		</sec:authorize>
 		
 		<sec:authorize access="isAuthenticated()">
+			<sec:authentication property="principal.profile_img" var="profile_img"/>
+			<li>
+				<c:if test="${empty profile_img }">
+					<img src="../resources/image/default_user.png" class="users__img">
+				</c:if>
+			</li>
 			<li><sec:authentication property="principal.name"/></li>
 			<li>
 				<form action="${pageContext.request.contextPath }/users/logout" method="post">

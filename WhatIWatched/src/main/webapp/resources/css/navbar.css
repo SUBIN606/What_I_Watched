@@ -24,13 +24,20 @@
 
 .navbar__users li {
 	list-style: none;
-	padding: 7px;
+	padding: 0 3px;
 }
 
 .navbar__users form {
 	display: inline;
 }
 
+.users__img {
+	width: 35px;
+	object-fit: cover;
+	object-position: center;
+}
+
 .logout {
+	margin-left: 10px;
 	background-color: var(--light-color);
 }

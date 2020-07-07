@@ -4,11 +4,12 @@
 	max-width: 320px;
     max-height: 500px;
     text-align: center;
-    margin: 100px auto;
+    margin: 80px auto;
 }
 .registerWrap p {
-	font-size: 25px;
+	font-size: 27px;
 	font-weight: 600;
+	margin-bottom: 20px;
 }
 .registerWrap span { 
 	color: var(--light-color);
@@ -35,8 +36,13 @@
 	border-bottom: 1px solid var(--accent-color);
 }
 
-.loginWrap input[type="submit"]{
+.registerWrap input[type="submit"]{
+	margin-top: 20px;
 	width: 325px;
 	border: none;
 	font-size: 17px;
+}
+
+.registerWrap input[type="submit"]:hover {
+	box-shadow: 0px 0px 7px 0px #92c7bc;
 }

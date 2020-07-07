@@ -22,16 +22,8 @@ public class UserController {
 	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 	
 	@GetMapping("/login")
-	public void loginPage(String error, String logout, Model model) {
+	public void loginPage() {
 		logger.info("로그인 페이지로 이동~");
-		logger.info("err :" + error );
-		logger.info("logout : " + logout );
-		if(error != null) { 
-			model.addAttribute("error", error); 
-		} 
-		if(logout != null) { 
-			model.addAttribute("logout","로그아웃"); 
-		}
 	}
 	
 	

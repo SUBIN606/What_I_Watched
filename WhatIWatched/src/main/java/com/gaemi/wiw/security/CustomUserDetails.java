@@ -13,6 +13,7 @@ public class CustomUserDetails implements UserDetails {
 	private String id;
 	private String password;
 	private String name;
+	private String profile_img;
 	private String auth;
 	private int enabled;
 	
@@ -60,6 +61,13 @@ public class CustomUserDetails implements UserDetails {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
 
+	public String getProfile_img() {
+		return profile_img;
+	}
+
+	public void setProfile_img(String profile_img) {
+		this.profile_img = profile_img;
+	}
+	
 }

@@ -10,7 +10,7 @@ const writeArea = document.querySelector(".writeFormWrap");
 // api에서 받아올 데이터값을 담을 변수
 let movieList = [];
 
-// viewmore를 위한 페이징 값
+// viewmore를 위한 페이징 값 10개씩 가져옴
 let display = 10;
 function setDisplay(){
 	display += 10;
@@ -24,6 +24,7 @@ function clickSearchBtn() {
 	
 	// 다시 검색하는 경우를 위해 빈 배열로 초기화
 	movieList= [];
+	
 	// 리뷰 작성 form 숨기기
 	writeArea.classList.add("hide");
 	
@@ -44,7 +45,7 @@ function clickSearchBtn() {
 	
 }
 
-// 검색관련 알림
+// 검색관련 알림 출력
 function searchAlert(msg) {
 	removeAlert();
 	const alert = document.createElement("p");
@@ -65,9 +66,13 @@ function removeAlert(){
 function clickMoreBtn() {
 	
 	const keyword = inputSearch.value;
+	
+	// 이전에 불러온 개수 이후 부터 불러오기 위해
 	const nextStart = getDisplay() + 1;
 
 	searchContent(keyword, true, nextStart);
+	
+	// 불러온 개수 갱신
 	setDisplay();
 
 }
@@ -76,26 +81,30 @@ function clickMoreBtn() {
 // 영화 검색 API
 function searchContent(keyword, viewMore, nextStart) {
 	
+	// API호출하는 컨트롤러와 통신
 	fetch(`/reviews/search?keyword=${keyword}&viewMore=${viewMore}&nextStart=${nextStart}`,{
 		method: 'get',
 		headers: {'Content-Type': 'text/json;charset=utf-8'}
 	})
 	.then(response => response.json())
-	.then(data => {
+	.then(data => {		
+		
 		const nextStart = getDisplay() + 1;
-
+		
+		// 더 불러올 내역이 없으면 view more버튼 숨기기
 		if(data.total >= nextStart){
 			viewMoreBtn.classList.remove("hide");
 		}else{
 			viewMoreBtn.classList.add("hide");
 		}
-		if(movieList.length > 0){
-			let newLoades = data.items;
-			paintContents(newLoades);
-			movieList = movieList.concat(newLoades);
-		}else{
+		
+		if(movieList.length === 0){ // 처음 혹은 다시 검색하는 경우
 			movieList = data.items;
 			paintContents(movieList);
+		}else{	// view more
+			const newLoades = data.items;
+			paintContents(newLoades);
+			movieList = movieList.concat(newLoades);
 		}
 	})
 }
@@ -104,6 +113,8 @@ function searchContent(keyword, viewMore, nextStart) {
 function paintContents(data) {
 	
 	contentsContainer.classList.remove("hide");
+	
+	// 검색 결과가 없을 경우
 	if(data.length === 0){
 		const p = document.createElement("p");
 		p.innerHTML = "검색결과가 없습니다😓";
@@ -120,6 +131,7 @@ function paintContents(data) {
 		subTitleSpan.classList.add("subtitle");
 		
 		const chooseBtn = document.createElement("button");
+		chooseBtn.classList.add("btn");
 		chooseBtn.innerHTML = "선택";
 		chooseBtn.addEventListener("click", clickChooseBtn);
 		
