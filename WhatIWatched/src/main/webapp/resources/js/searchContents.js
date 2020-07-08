@@ -175,6 +175,7 @@ function clickChooseBtn(e) {
 	const img = document.querySelector(".posterImg");
 	const inputTitle = document.querySelector(".input__title");
 	const inputSubTitle = document.querySelector(".input__subtitle");
+	const inputPosterImg = document.querySelector(".input__posterImg");
 	
 	if(e.target.parentNode.tagName === "LI"){
 		const li = e.target.parentNode;
@@ -188,6 +189,7 @@ function clickChooseBtn(e) {
 		img.src = content.image;
 		inputTitle.value = convertFureString(content.title);
 		inputSubTitle.value = content.subtitle;
+		inputPosterImg.value = content.image;
 	}
 	
 	inputSearch.value = "";

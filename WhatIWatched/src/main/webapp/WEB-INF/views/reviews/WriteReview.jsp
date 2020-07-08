@@ -30,6 +30,7 @@
 			
 			<div class="writeForm__row">			
 				<div class="writeForm__col left">
+					<input type="hidden" name="poster_img" class="input__posterImg"/>
 					<img class="posterImg">
 					<input type='file' accept='image/jpg,image/png,image/jpeg,image/gif' 
 							id='posterImgUpload' class="input__file" name="file"/>
@@ -50,7 +51,7 @@
 			</div>
 			
 			<div class="writeForm__row">
-				<textarea rows="7" placeholder="후기를 적어보세요." name="review"></textarea>
+				<textarea rows="7" placeholder="후기를 적어보세요." name="content"></textarea>
 			</div>
 			
 			<div class="writeForm__row">

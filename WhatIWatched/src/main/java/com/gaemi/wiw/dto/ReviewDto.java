@@ -8,21 +8,24 @@ public class ReviewDto implements Serializable{
 	private int seq;
 	private String title;
 	private String subtitle;
+	private String poster_img;
 	private int rating;
 	private String comment;
-	private String review;
+	private String content;
 	
 	public ReviewDto() {
 	}
 
-	public ReviewDto(int seq, String title, String subtitle, int rating, String comment, String review) {
+	public ReviewDto(int seq, String title, String subtitle, String poster_img, int rating, String comment,
+			String content) {
 		super();
 		this.seq = seq;
 		this.title = title;
 		this.subtitle = subtitle;
+		this.poster_img = poster_img;
 		this.rating = rating;
 		this.comment = comment;
-		this.review = review;
+		this.content = content;
 	}
 
 	public int getSeq() {
@@ -49,6 +52,14 @@ public class ReviewDto implements Serializable{
 		this.subtitle = subtitle;
 	}
 
+	public String getPoster_img() {
+		return poster_img;
+	}
+
+	public void setPoster_img(String poster_img) {
+		this.poster_img = poster_img;
+	}
+
 	public int getRating() {
 		return rating;
 	}
@@ -65,18 +76,18 @@ public class ReviewDto implements Serializable{
 		this.comment = comment;
 	}
 
-	public String getReview() {
-		return review;
+	public String getContent() {
+		return content;
 	}
 
-	public void setReview(String review) {
-		this.review = review;
+	public void setContent(String content) {
+		this.content = content;
 	}
 
 	@Override
 	public String toString() {
-		return "ReviewDto [seq=" + seq + ", title=" + title + ", subtitle=" + subtitle + ", rating=" + rating
-				+ ", comment=" + comment + ", review=" + review + "]";
+		return "ReviewDto [seq=" + seq + ", title=" + title + ", subtitle=" + subtitle + ", poster_img=" + poster_img
+				+ ", rating=" + rating + ", comment=" + comment + ", content=" + content + "]";
 	}
-	
+
 }

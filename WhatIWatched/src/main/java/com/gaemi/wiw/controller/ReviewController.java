@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.gaemi.wiw.dto.ReviewDto;
+import com.gaemi.wiw.util.FileUtility;
 import com.gaemi.wiw.util.MovieAPI;
 
 @RequestMapping("/reviews")
@@ -43,26 +44,18 @@ public class ReviewController {
 	
 	@PostMapping("/write-processing")
 	public String writePrecessing(ReviewDto reviewDto, @RequestParam("file") MultipartFile file) throws Exception{
-		System.out.println(reviewDto);
-		// 파일 태그 name
-		String fileTag = "file";
-		
-	    // 업로드 파일이 저장될 경로
-		
-		// 파일 이름	
-		//MultipartFile file = mtf.getFile(fileTag);
+
 		if(file.isEmpty()) {
 			System.out.println("파일이 없잖니;;");
 		}else {
-			String fileName = file.getOriginalFilename();
-			// 파일 전송
-			try {
-			 //   file.transferTo(new File(filePath + fileName));
-			  System.out.println(fileName);
-			} catch(Exception e) {
-			    System.out.println("업로드 오류");
+			String uploadResult = FileUtility.saveFile(file);
+			logger.info("파일 업로드 결과 : "+uploadResult);
+			if(uploadResult != null) {
+				reviewDto.setPoster_img(uploadResult);
 			}
 		}
+		
+		logger.info("저장 할 reviewDto : " + reviewDto);
 		
 		return "redirect:/";
 	}
