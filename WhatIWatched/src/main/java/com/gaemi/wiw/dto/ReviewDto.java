@@ -2,20 +2,7 @@ package com.gaemi.wiw.dto;
 
 import java.io.Serializable;
 import java.util.Date;
-/*
- CREATE TABLE REVIEWS
-(
-    SEQ NUMBER PRIMARY KEY,
-    AUTHOR VARCHAR2(50) NOT NULL,
-    TITLE VARCHAR2(300) NOT NULL,
-    SUBTITLE VARCHAR2(500),
-    POSTER_IMG VARCHAR2(300),
-    RATING NUMBER(10) NOT NULL,
-    SHORT_COMMENT VARCHAR2(500),
-    CONTENT VARCHAR2(2000),
-    REGDATE DATE DEFAULT SYSDATE
-);
-*/
+
 @SuppressWarnings("serial")
 public class ReviewDto implements Serializable{
 	

@@ -72,7 +72,7 @@ function clickMoreBtn() {
 
 	searchContent(keyword, true, nextStart);
 	
-	// 불러온 개수 갱신
+	// 불러올 시작점 갱신
 	setDisplay();
 
 }
@@ -106,6 +106,7 @@ function searchContent(keyword, viewMore, nextStart) {
 			paintContents(newLoades);
 			movieList = movieList.concat(newLoades);
 		}
+
 	})
 }
 
@@ -123,6 +124,7 @@ function paintContents(data) {
 	
 	data.forEach((content, index) => {
 		const li = document.createElement("li");
+		li.id = getDisplay()===10?index:index+(getDisplay()-10);
 		
 		const titleWrap = document.createElement("div");	
 		const titleSpan = document.createElement("span");	
@@ -179,12 +181,13 @@ function clickChooseBtn(e) {
 	
 	if(e.target.parentNode.tagName === "LI"){
 		const li = e.target.parentNode;
-		const title = li.querySelector("span").innerHTML;
-
+		const title = li.querySelector(".title").innerHTML;
+		
 		// 선택한 컨텐츠 객체를 movieList배열에서 찾기
-		const content = movieList.find(movie => {
-			return movie.title === title;
-		})
+//		const content = movieList.find(movie => {
+//			return movie.title===title;
+//		})
+		const content = movieList[li.id];
 		console.log("클릭한 컨텐츠 : ", content);
 		img.src = content.image;
 		inputTitle.value = convertFureString(content.title);
