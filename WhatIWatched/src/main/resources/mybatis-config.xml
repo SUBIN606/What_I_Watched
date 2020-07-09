@@ -5,5 +5,6 @@
 <configuration>
 	<typeAliases>
 		<typeAlias alias="UserDto" type="com.gaemi.wiw.dto.UserDto" />
+		<typeAlias alias="ReviewDto" type="com.gaemi.wiw.dto.ReviewDto" />
 	</typeAliases>
 </configuration>

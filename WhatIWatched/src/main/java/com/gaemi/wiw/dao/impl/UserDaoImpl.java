@@ -15,16 +15,16 @@ public class UserDaoImpl implements UserDao {
 	@Autowired
 	SqlSession sqlSession;
 	
-	private final String namespace = "Users.";
+	private final String NAME_SPACE = "Users.";
 
 	@Override
 	public void RegisterUser(UserDto userInfo) {		
-		sqlSession.insert(namespace + "register" , userInfo);
+		sqlSession.insert(NAME_SPACE + "register" , userInfo);
 	}
 
 	@Override
 	public CustomUserDetails getUserById(String id) {
-		CustomUserDetails users = sqlSession.selectOne(namespace + "getUserById", id);
+		CustomUserDetails users = sqlSession.selectOne(NAME_SPACE + "getUserById", id);
 		return users;
 	}
 

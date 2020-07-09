@@ -46,7 +46,7 @@
 					<input type="range" class="input__rating" name="rating" min="0" max="10"/>
 	
 					<p>한줄평</p>
-					<input type="text" class="input__comment" name="comment" placeholder="이 컨텐츠는 한 마디로?"/>
+					<input type="text" class="input__comment" name="short_comment" placeholder="이 컨텐츠는 한 마디로?"/>
 				</div>						
 			</div>
 			

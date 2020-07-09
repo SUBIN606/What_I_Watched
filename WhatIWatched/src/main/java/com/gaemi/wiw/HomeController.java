@@ -30,7 +30,7 @@ public class HomeController {
 		
 			CustomUserDetails user = (CustomUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 			logger.info("//////////////// 유저 name :" + user.getName());
-			logger.info("//////////////// 유저 name :" + user.getProfile_img());
+			logger.info("//////////////// 유저 프로필 이미지 :" + user.getProfile_img());
 			logger.info("//////////////// 유저 auth : " + user.getAuthorities() + principal.toString());
 		}
 		

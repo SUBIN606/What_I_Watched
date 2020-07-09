@@ -1,9 +1,13 @@
 package com.gaemi.wiw.controller;
 
+import java.security.Principal;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,12 +18,17 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.gaemi.wiw.dto.ReviewDto;
+import com.gaemi.wiw.security.CustomUserDetails;
+import com.gaemi.wiw.service.ReviewService;
 import com.gaemi.wiw.util.FileUtility;
 import com.gaemi.wiw.util.MovieAPI;
 
 @RequestMapping("/reviews")
 @Controller
 public class ReviewController {
+	
+	@Autowired
+	ReviewService reviewService;
 	
 	private static final Logger logger = LoggerFactory.getLogger(ReviewController.class);
 	
@@ -43,11 +52,13 @@ public class ReviewController {
 	}
 	
 	@PostMapping("/write-processing")
-	public String writePrecessing(ReviewDto reviewDto, @RequestParam("file") MultipartFile file) throws Exception{
-
-		if(file.isEmpty()) {
-			System.out.println("파일이 없잖니;;");
-		}else {
+	public String writePrecessing(ReviewDto reviewDto, Principal principal,
+									@RequestParam("file") MultipartFile file) throws Exception{
+		CustomUserDetails user = (CustomUserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		reviewDto.setAuthor(user.getUsername());
+		
+		// poster를 직접 올렸을 경우
+		if(!file.isEmpty()) {
 			String uploadResult = FileUtility.saveFile(file);
 			logger.info("파일 업로드 결과 : "+uploadResult);
 			if(uploadResult != null) {
@@ -56,6 +67,7 @@ public class ReviewController {
 		}
 		
 		logger.info("저장 할 reviewDto : " + reviewDto);
+		reviewService.writeReview(reviewDto);
 		
 		return "redirect:/";
 	}
