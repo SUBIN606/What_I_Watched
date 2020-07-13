@@ -7,4 +7,8 @@
 		INSERT INTO REVIEWS(SEQ, AUTHOR, TITLE, SUBTITLE, POSTER_IMG, RATING, SHORT_COMMENT, CONTENT)
 		VALUES(REVIEWS_SEQ.NEXTVAL, #{author}, #{title}, #{subtitle}, #{poster_img}, #{rating}, #{short_comment}, #{content})
 	</insert>
+	
+	<select id="getAllReviews" resultType="ReviewDto">
+		SELECT * FROM REVIEWS
+	</select>
 </mapper>

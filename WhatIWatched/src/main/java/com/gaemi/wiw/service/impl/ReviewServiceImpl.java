@@ -1,5 +1,7 @@
 package com.gaemi.wiw.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +18,11 @@ public class ReviewServiceImpl implements ReviewService {
 	@Override
 	public void writeReview(ReviewDto reviewDto) {
 		reviewDao.writeReview(reviewDto);
+	}
+
+	@Override
+	public List<ReviewDto> getAllReviews() {
+		return reviewDao.getAllReviews();
 	}
 
 }

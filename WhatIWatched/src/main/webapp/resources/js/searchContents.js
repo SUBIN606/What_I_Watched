@@ -202,10 +202,16 @@ function clickChooseBtn(e) {
 
 // title에서 <b></b>태그 제거
 function convertFureString(text) {
-	let convert = text.replace("<b>", "");
-	console.log(convert);
-	convert = convert.replace("</b>", "");
-	console.log(convert);
+	let convert = "";
+	
+	while(text.includes("<b>") || text.includes("</b>")){
+		convert = text.replace("<b>", "");
+		console.log(convert);
+		convert = convert.replace("</b>", "");
+		console.log(convert);
+		text = convert;
+	}
+
 	return convert;
 }
 

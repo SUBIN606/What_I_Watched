@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,7 +27,8 @@
 		<form class="writeForm" 
 			  action="${pageContext.request.contextPath }/reviews/write-processing?${_csrf.parameterName}=${_csrf.token}" 
 			  method="post" enctype="multipart/form-data">
-			
+
+			<input type="hidden" name="author" value="<sec:authentication property="principal.username"/>"/>
 			<div class="writeForm__row">			
 				<div class="writeForm__col left">
 					<input type="hidden" name="poster_img" class="input__posterImg"/>

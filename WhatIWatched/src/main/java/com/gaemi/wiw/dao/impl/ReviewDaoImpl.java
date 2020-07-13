@@ -1,5 +1,7 @@
 package com.gaemi.wiw.dao.impl;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -18,6 +20,12 @@ public class ReviewDaoImpl implements ReviewDao {
 	@Override
 	public void writeReview(ReviewDto reviewDto) {
 		sqlSession.insert(NAME_SPACE + "writeReview", reviewDto);
+	}
+
+	@Override
+	public List<ReviewDto> getAllReviews() {
+		List<ReviewDto> result = sqlSession.selectList(NAME_SPACE + "getAllReviews");
+		return result;
 	}
 
 }
