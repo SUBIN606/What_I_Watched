@@ -215,3 +215,13 @@
     object-position: center;
 }
 
+/*	리뷰 리스트	   */
+.reviewList__container li{
+	list-style: none;
+	border: 1px solid red;
+	display: flex;
+}
+
+.reviewList__container div {
+	display: grid;
+}

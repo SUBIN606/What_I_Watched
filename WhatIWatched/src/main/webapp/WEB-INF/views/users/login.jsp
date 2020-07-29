@@ -12,7 +12,7 @@
 </head>
 <body>
 	<!-- Nav Bar -->
-	<jsp:include page="../common/NavBar.jsp" flush="false" />
+	<%@ include file="../common/NavBar.jsp" %>
 	
 	<div class="loginWrap">
 		<img src="../resources/image/popcorn.png" class="login__logo">

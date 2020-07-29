@@ -10,21 +10,25 @@
 </head>
 <body>
 	<!-- Nav Bar -->
-	<jsp:include page="../common/NavBar.jsp" flush="false" />
-<h1>리뷰목록 보러왔니</h1>
-<jsp:useBean id="util" class="com.gaemi.wiw.util.UseBeanUtils" />
-
-<c:forEach items="${reviews }" var="review" varStatus="i">
-	<jsp:setProperty property="poster_img" name="util" value="${review.poster_img }"/>
+	<%@ include file="../common/NavBar.jsp" %>
 	
-	<li>
-		<img class="posterImg" src="<jsp:getProperty property="poster_img" name="util"/>">
-		<div>${review.title }</div>
-		<div>${review.rating }</div>
-		<div>${review.short_comment }</div>
-	</li>
+	<h1>리뷰목록 보러왔니</h1>
+	<jsp:useBean id="util" class="com.gaemi.wiw.util.UseBeanUtils" />
+	
+	<div class="reviewList__container">
+		<c:forEach items="${reviews }" var="review" varStatus="i">
+		<jsp:setProperty property="poster_img" name="util" value="${review.poster_img }"/>		
+			<li>
+				<img class="posterImg" src="<jsp:getProperty property="poster_img" name="util"/>">
+				<div>
+					<span>${review.title }</span>
+					<span>평점: ${review.rating }</span>
+					<span>한줄평: ${review.short_comment }</span>
+				</div>				
+			</li>	
+		</c:forEach>
+	</div>
 
-</c:forEach>
 
 </body>
 </html>

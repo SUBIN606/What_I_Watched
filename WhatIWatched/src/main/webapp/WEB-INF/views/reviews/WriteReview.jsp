@@ -11,7 +11,7 @@
 </head>
 <body>
 	<!-- Nav Bar -->
-	<jsp:include page="../common/NavBar.jsp" flush="false" />
+	<%@ include file="../common/NavBar.jsp" %>
 	
 	<div class="searchWrap">
 		<input type="text" class="input__search" name="content_title" placeholder="컨텐츠 제목을 입력하세요." />

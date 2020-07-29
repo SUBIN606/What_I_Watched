@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
@@ -8,7 +9,8 @@
 </head>
 <body>
 	<!-- Nav Bar -->
-	<jsp:include page="common/NavBar.jsp" flush="false" />
+	<%@ include file="common/NavBar.jsp" %>
+	
 	
 	<h1>Welcome Home</h1>
 	<a href="${pageContext.request.contextPath }/reviews/write">글쓰기</a><br>

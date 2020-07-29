@@ -9,7 +9,7 @@
 </head>
 <body>
 	<!-- Nav Bar -->
-	<jsp:include page="../common/NavBar.jsp" flush="false" />
+	<%@ include file="../common/NavBar.jsp" %>
 
 	<div class="registerWrap">
 		<p>SIGN UP</p>
